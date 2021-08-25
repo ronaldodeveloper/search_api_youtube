@@ -3,9 +3,7 @@
   padding: 0;
 }
 body{
-
   font-family:arial,sans-serif;
-  
   
   main{
     width: 100%;
@@ -14,7 +12,7 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    // background-color:rebeccapurple;
+    position: relative;
 
 
     .searchContainer{
@@ -25,6 +23,7 @@ body{
       justify-content: center;
       flex-direction:row;
       background-color:rebeccapurple;
+      position: relative;
 
 
       form{
@@ -33,8 +32,6 @@ body{
         flex-direction: row;
         justify-content: flex-start;
         align-items: center;
-        background-color:rgb(124, 62, 62);
-
 
         input{
           width: 70%;
@@ -48,6 +45,8 @@ body{
           padding: 10px 0;
           border: none;
           cursor: pointer;
+          background-color: rgb(0, 0, 0);
+          color:rgb(255, 255, 255);
         }
 
       }
@@ -58,9 +57,7 @@ body{
       height: calc(100% - 150px);
       display: flex;
       flex-direction: row;
-      // justify-content: center;
       align-items: center;
-      // background-color:rgb(204, 139, 139);
       position: relative;
       
 
@@ -72,7 +69,6 @@ body{
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
-        // background-color:rgb(245, 245, 245);
         position: absolute;
         top: 10px;
         left: 0;
@@ -92,7 +88,7 @@ body{
         cursor: pointer;
         
         .cardThumb{
-          width: 100px;
+          width: 170px;
           height: 100px;
           background-color:rgb(2, 2, 2);
 
@@ -105,7 +101,6 @@ body{
         justify-content: center;
         align-items: flex-start;
         padding-left: 15px;
-        // background-color:rgb(209, 25, 25);
            
         h3{
           color:rgb(117, 13, 117);
@@ -132,11 +127,32 @@ body{
         z-index: 100;
 
         h2{
-          color:aquamarine;
+          color:rebeccapurple;
         }
 
       }
 
+      // MOBILE
+  @media screen and (min-width:200px) and (max-width:900px){
+  
+    &{
+        position: relative;
+        flex-direction: column-reverse;
+        justify-content: space-between;
+
+      .videoPlay{
+        width: 100%;
+        top: 0;
+        left:0;
+      }
+      .result{
+        position: relative;
+        width: 100%;
+        left:0;
+        top: 25%;
+      }
     }
   }
+ } 
+}
 }

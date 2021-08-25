@@ -1,76 +1,32 @@
 import React, { useState, useEffect } from 'react';
+import youtube from './api/youtube.js'
 import './global.scss';
 
 function App() {
   
    const [seachVideo, setSearchVideo]= useState()
-   const [filterSearch, setFilterSearch]= useState()
+   const [filterSearch, setFilterSearch]= useState([])
 
-   useEffect(()=>{
-       apiYoutube()
-     }
-   ,[])
+  useEffect(()=>{
+    apiYoutube()
+  }
+,[])
 
-   // API
-   const apiYoutube= async ()=> {
-    try{
-        const url= `https://www.googleapis.com/youtube/v3/search?part=id,snippet&q=react&maxresults=20&key=AIzaSyB2qPOWZw7J7GJ5rRjpL_tkfi4shZckQaE`;
-      
-        const response= await fetch(url)
-        const data = await response.json()
-        console.log(
-            JSON.parse(
-                JSON.stringify(
-                    Object.assign(data)
-        )))
-    }catch(error){
-        console.log(`API not connect!`)
-        console.log(error)
-      }   
+const apiYoutube= async (video)=> {
+  const response= await youtube.get('/search', {
+    params: {
+      q: video
     }
-   // console.log(apiYoutube())
+  })
+  setFilterSearch([response.data.items])
+}
   
    const handleSubmit= (e)=>{ 
      e.preventDefault(); 
      const busca= { video: seachVideo};
-     setFilterSearch(busca.video)
+     apiYoutube(busca.video)
    }
-   console.log(filterSearch)
-
-
-  // TEXT result is
-  const resultados= [
-    {
-    id:1,   
-    titulo: 'Titulo do Video',
-    descricao: 'video sobre?',
-    thumb: 'avatar'
-    },
-    {
-      id:2,   
-      titulo: 'Titulo do Video 2',
-      descricao: 'video sobre',
-      thumb: 'avatar 2'
-    },
-    {
-      id:3,   
-      titulo: 'Titulo do Video 3',
-      descricao: 'video sobre',
-      thumb: 'avatar 3'
-    },
-    {
-      id:4,   
-      titulo: 'Titulo do Video 4',
-      descricao: 'video sobre',
-      thumb: 'avatar 4'
-    },
-    {
-      id:5,   
-      titulo: 'Titulo do Video 5',
-      descricao: 'video sobre',
-      thumb: 'avatar 5'
-    }
-  ]
+  console.log(Object.assign(filterSearch))
 
 
  const [play, setPlay]= useState()
@@ -95,15 +51,16 @@ function App() {
       <section className="content">
         <article className="result">
             <h1>Resultados</h1>
-            {resultados.map((el)=>{
+            {filterSearch.map((el)=>{
+             
                    return (
-                     <section key={el.id} className="card" onClick={Player}>
+                     <section key={el} className="card" onClick={Player}>
                           <div className="cardThumb"> 
-                             <h2>{el.thumb}</h2>
+                             <h2>{el.snippet.thumbnails.medium.url}</h2>
                           </div>
                           <div className="cardTitles"> 
-                            <h3>{el.titulo}</h3>
-                            <h4>{el.descricao}</h4>
+                            <h3>{el.snippet.channelTitle}</h3>
+                            <h4>{el.snippet.description}</h4>
                           </div>
                      </section>
                    )
