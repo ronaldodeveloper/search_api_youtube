@@ -1,0 +1,53 @@
+*{ 
+  margin: 0;
+  padding: 0;
+}
+body{
+  
+  
+  main{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    // background-color:rebeccapurple;
+
+
+
+    .searchContainer{
+      width: 100%;
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction:row;
+      background-color:rebeccapurple;
+
+
+      form{
+        display: flex;
+        flex-direction: row;
+        width: 70%;
+        justify-content: flex-start;
+        align-items: center;
+        background-color:rgb(124, 62, 62);
+
+
+        input{
+          width: 70%;
+          padding: 10px 15px;
+          border: none;
+          align-self: flex-end;
+          outline: none;
+        }
+        button{
+          width: 30%;
+          padding: 10px 0;
+          border: none;
+          cursor: pointer;
+        }
+
+      }
+    }
+  }
+}

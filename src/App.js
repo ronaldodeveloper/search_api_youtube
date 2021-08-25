@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
+import './global.scss';
 
 function App() {
   
@@ -30,7 +30,6 @@ function App() {
     }
    // console.log(apiYoutube())
   
-
    const handleSubmit= (e)=>{ 
      e.preventDefault(); 
      const busca= { video: seachVideo};
